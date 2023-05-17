@@ -11,7 +11,7 @@ class UpdateBlogRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,12 @@ class UpdateBlogRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'category_id' => 'required',
+            'title' => 'required|max:150|unique:blogs,title,' . request()->route('blog')->id,
+            'type' => 'required|array|min:1',
+            'content' => 'required|array|min:1',
+            'tags' => 'required|max:150',
+            'meta_desc' => 'required|max:150',
         ];
     }
 }

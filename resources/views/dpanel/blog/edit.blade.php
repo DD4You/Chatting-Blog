@@ -64,7 +64,7 @@
     @endif
 
 
-    <form action="{{ route('dpanel.blog.update', $data->id) }}" method="post" enctype="multipart/form-data">
+    <form action="{{ route('dpanel.blog.update', $blog->id) }}" method="post" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
@@ -75,14 +75,14 @@
                     class="w-full bg-transparent border border-gray-500 rounded py-0.5 px-2 focus:outline-none">
                     <option value="">select</option>
                     @foreach ($categories as $item)
-                        <option value="{{ $item->id }}" @selected($item->id == $data->category_id)>{{ $item->name }}</option>
+                        <option value="{{ $item->id }}" @selected($item->id == $blog->category_id)>{{ $item->name }}</option>
                     @endforeach
                 </select>
             </div>
 
             <div>
                 <label>Title <span class="text-red-500 font-bold">*</span></label>
-                <input type="text" name="title" value="{{ $data->title }}" maxlength="250" required
+                <input type="text" name="title" value="{{ $blog->title }}" maxlength="250" required
                     placeholder="Enter blog title"
                     class="w-full bg-transparent border border-gray-500 rounded py-0.5 px-2 focus:outline-none">
             </div>
@@ -93,14 +93,14 @@
             </div>
             <div class="md:col-span-3">
                 <label>Tags <span class="text-red-500 font-bold">*</span></label>
-                <input type="text" name="tags" value="{{ $data->tags }}" maxlength="150" required
+                <input type="text" name="tags" value="{{ $blog->tags }}" maxlength="150" required
                     placeholder="Enter comma separated tags e.g. WhatsApp, Facebook"
                     class="w-full bg-transparent border border-gray-500 rounded py-0.5 px-2 focus:outline-none">
             </div>
 
             {{-- <div>
                 <label>Schedule Date Time</label>
-                <input type="datetime-local" name="published_at" value="{{ $data->published_at }}"
+                <input type="datetime-local" name="published_at" value="{{ $blog->published_at }}"
                     placeholder="Enter blog title"
                     class="w-full bg-transparent border border-gray-500 rounded py-0.5 px-2 focus:outline-none">
             </div> --}}
@@ -108,14 +108,14 @@
 
         <div class="mb-2">
             <label>Meta Description <span class="text-red-500 font-bold">*</span></label>
-            <input type="text" name="meta_desc" value="{{ $data->meta_desc }}" maxlength="150" required
+            <input type="text" name="meta_desc" value="{{ $blog->meta_desc }}" maxlength="150" required
                 placeholder="Enter meta description"
                 class="w-full bg-transparent border border-gray-500 rounded py-0.5 px-2 focus:outline-none">
         </div>
 
         <div id="contentContainer" class="mb-3 flex flex-col gap-2">
 
-            @foreach (json_decode($data->content) as $item)
+            @foreach (json_decode($blog->content) as $item)
                 <div class="flex gap-3">
                     <div>
                         <label>Content Type <span class="text-red-500 font-bold">*</span></label>
