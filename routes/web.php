@@ -15,6 +15,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::controller(HomeController::class)->group(function () {
-    Route::get('/', 'index')->name('landing_page');
+    Route::get('/', 'index')->name('landingPage');
     Route::get('/blog/{slug}', 'show')->name('show-blog');
 });
