@@ -46,8 +46,8 @@
 
                 <x-latest-post />
 
-                <x-heading-card title="Newsletter" />
-                <x-news-letter />
+                {{-- <x-heading-card title="Newsletter" />
+                <x-news-letter /> --}}
             </div>
         </div>
 
