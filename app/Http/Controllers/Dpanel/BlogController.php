@@ -53,7 +53,7 @@ class BlogController extends Controller
         }
 
 
-        Blog::create([
+        $blog = Blog::create([
             'category_id' => $request->category_id,
             'featured_image' => $request->file('featured_image')->store('media', 'public'),
             'title' => $request->title,
@@ -62,6 +62,13 @@ class BlogController extends Controller
             'content' => count($content) ? json_encode($content) : null,
             'status' => isset($request->draft) ? 'Draft' : 'Published'
         ]);
+
+        if ($request->published_at != null) {
+            $blog->update([
+                'published_at' => $request->published_at,
+                'status' => 'Scheduled'
+            ]);
+        }
 
         return redirect()->route(config('dpanel.prefix') . '.blog.index')->withSuccess('New Blog Added Successfully');
     }
@@ -110,8 +117,16 @@ class BlogController extends Controller
             'meta_desc' => $request->meta_desc,
             'tags' => $request->tags,
             'content' => count($content) ? json_encode($content) : null,
+            'published_at' => null,
             'status' => isset($request->draft) ? 'Draft' : 'Published'
         ]);
+
+        if ($request->published_at != null) {
+            $blog->update([
+                'published_at' => $request->published_at,
+                'status' => 'Scheduled'
+            ]);
+        }
 
         if ($request->hasFile('featured_image')) {
             Storage::disk('public')->delete($blog->featured_image);

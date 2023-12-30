@@ -12,6 +12,9 @@ class Blog extends Model
     use HasFactory;
 
     protected $guarded = [];
+    protected $casts = [
+        'published_at' => 'datetime',
+    ];
 
     protected static function booted()
     {

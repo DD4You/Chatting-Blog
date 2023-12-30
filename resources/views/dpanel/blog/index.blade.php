@@ -22,6 +22,12 @@
                     Title
                 </th>
                 <th scope="col" class="pl-3 py-3 text-left font-medium tracking-wider">
+                    Status
+                </th>
+                <th scope="col" class="pl-3 py-3 text-left font-medium tracking-wider">
+                    Schedule At
+                </th>
+                <th scope="col" class="pl-3 py-3 text-left font-medium tracking-wider">
                     action
                 </th>
 
@@ -38,6 +44,12 @@
                     </td>
                     <td class="px-4 py-2">
                         {{ $item->title }}
+                    </td>
+                    <td class="px-4 py-2">
+                        {{ $item->status }}
+                    </td>
+                    <td class="px-4 py-2">
+                        {{ $item->published_at?->format('d M, Y h:i A') }}
                     </td>
                     <td class="px-4 py-2 flex justify-center items-center">
                         <a href="{{ route(config('dpanel.prefix') . '.blog.edit', $item) }}"

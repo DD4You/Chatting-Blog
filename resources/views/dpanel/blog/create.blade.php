@@ -98,12 +98,11 @@
                     class="w-full bg-transparent border border-gray-500 rounded py-0.5 px-2 focus:outline-none">
             </div>
 
-            {{-- <div>
+            <div>
                 <label>Schedule Date Time</label>
                 <input type="datetime-local" name="published_at" value="{{ old('published_at') }}"
-                    placeholder="Enter blog title"
                     class="w-full bg-transparent border border-gray-500 rounded py-0.5 px-2 focus:outline-none">
-            </div> --}}
+            </div>
         </div>
 
         <div class="mb-2">
