@@ -63,14 +63,14 @@
                 </small>
             </div>
             <div class="flex flex-col">
-                <a href="#">About Us</a>
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms Of Condition</a>
+                <a href="{{ route('legal-stuff', 'about-us') }}">About Us</a>
+                <a href="{{ route('legal-stuff', 'privacy-policy') }}">Privacy Policy</a>
+                <a href="{{ route('legal-stuff', 'terms-of-use') }}">Terms Of Condition</a>
             </div>
 
             <div class="flex flex-col">
-                <a href="#">Disclaimer</a>
-                <a href="#">Contact Us</a>
+                <a href="{{ route('legal-stuff', 'disclaimer') }}">Disclaimer</a>
+                <a href="{{ route('legal-stuff', 'contact-us') }}">Contact Us</a>
             </div>
         </div>
         <div class="px-4 md:px-24 bg-gray-800 text-white flex flex-wrap justify-center md:justify-between">

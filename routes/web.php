@@ -16,6 +16,17 @@ use Illuminate\Support\Facades\Route;
 
 Route::controller(HomeController::class)->group(function () {
     Route::get('/chats/{blog}', 'show')->name('show-blog');
+
+    Route::get('/{key}', 'legalStuff')
+        ->name('legal-stuff')
+        ->whereIn('key', [
+            'about-us',
+            'privacy-policy',
+            'terms-of-use',
+            'disclaimer',
+            'contact-us',
+        ]);
+
     Route::get('/{category}', 'filterByCategory')->name('byCategory');
     Route::get('/', 'index')->name('landingPage');
 });

@@ -52,4 +52,10 @@ class HomeController extends Controller
     {
         return view('blog', compact('blog'));
     }
+    public function legalStuff($key)
+    {
+        $key = str_replace('-', '_', $key);
+        $data = settings($key, false, false);
+        return view('legal_stuff', compact('data'));
+    }
 }
