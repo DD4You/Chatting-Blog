@@ -64,7 +64,7 @@
     @endif
 
 
-    <form action="{{ route('dpanel.blog.update', $blog->id) }}" method="post" enctype="multipart/form-data">
+    <form action="{{ route('dpanel.blog.update', $blog) }}" method="post" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 

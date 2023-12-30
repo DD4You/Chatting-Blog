@@ -40,11 +40,11 @@
                         {{ $item->title }}
                     </td>
                     <td class="px-4 py-2 flex justify-center items-center">
-                        <a href="{{ route(config('dpanel.prefix') . '.blog.edit', $item->id) }}"
+                        <a href="{{ route(config('dpanel.prefix') . '.blog.edit', $item) }}"
                             class="ml-1 text-blue-500 bg-blue-100 focus:outline-none border border-blue-500 rounded-full w-6 h-6 flex justify-center items-center">
                             <i class="bx bx-edit"></i>
                         </a>
-                        <form action="{{ route(config('dpanel.prefix') . '.blog.destroy', $item->id) }}" method="post">
+                        <form action="{{ route(config('dpanel.prefix') . '.blog.destroy', $item) }}" method="post">
                             @csrf
                             @method('DELETE')
                             <button class="text-red-500">

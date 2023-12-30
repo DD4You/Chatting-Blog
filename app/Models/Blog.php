@@ -31,4 +31,9 @@ class Blog extends Model
     {
         $query->where('status', 'Published');
     }
+
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -27,12 +28,28 @@ class HomeController extends Controller
         return view('welcome', compact('latestPost', 'posts'));
     }
 
-    public function show($slug)
+    public function filterByCategory(Request $request, Category $category)
     {
-        $blog = Blog::active()->where('slug', $slug)->first();
+        $latestPost = Blog::with('category')->active()->latest()->first();
 
-        abort_if(!$blog, 404);
+        $posts = Blog::with('category')
+            ->when(
+                $request->search,
+                fn ($q) => $q->where('title', 'LIKE', '%' . $request->search . '%')
+                    ->orWhere('meta_desc', 'LIKE', '%' . $request->search . '%')
+                    ->orWhere('tags', 'LIKE', '%' . $request->search . '%')
+            )
+            ->when($request->category, fn ($q) => $q->where('category_id', $category->id))
+            ->active()
+            ->latest()
+            ->paginate(5)
+            ->withQueryString();
 
+        return view('welcome', compact('latestPost', 'posts'));
+    }
+
+    public function show(Blog $blog)
+    {
         return view('blog', compact('blog'));
     }
 }

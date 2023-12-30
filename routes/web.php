@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::controller(HomeController::class)->group(function () {
+    Route::get('/chats/{blog}', 'show')->name('show-blog');
+    Route::get('/{category}', 'filterByCategory')->name('byCategory');
     Route::get('/', 'index')->name('landingPage');
-    Route::get('/blog/{slug}', 'show')->name('show-blog');
 });

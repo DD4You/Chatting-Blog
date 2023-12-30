@@ -4,8 +4,8 @@
 
 @push('scripts')
     <script>
-        const editCategory = (id, name) => {
-            document.getElementById('edit-form').action = `${window.location.href}/${id}`
+        const editCategory = (slug, name) => {
+            document.getElementById('edit-form').action = `${window.location.href}/${slug}`
             document.getElementById('category-name').value = name;
             showBottomSheet('editBottomSheet');
         }
@@ -45,7 +45,7 @@
                         {{ $item->name }}
                     </td>
                     <td class="px-4 py-2 flex justify-center">
-                        <button onclick="editCategory('{{ $item->id }}', '{{ $item->name }}')"
+                        <button onclick="editCategory('{{ $item->slug }}', '{{ $item->name }}')"
                             class="ml-1 text-blue-500 bg-blue-100 focus:outline-none border border-blue-500 rounded-full w-6 h-6 flex justify-center items-center">
                             <i class="bx bx-edit"></i>
                         </button>

@@ -9,24 +9,30 @@
 
 
         <div class="relative mb-6">
-            <a href="{{ route('show-blog', $latestPost->slug) }}">
-                <img class="rounded-md shadow-md" src="{{ asset('storage/' . $latestPost->featured_image) }}" alt="">
-            </a>
+            @if ($latestPost)
 
-            <div
-                class="absolute bottom-0 left-0 right-0 pt-0.5 px-2 pb-2 bg-white bg-clip-padding backdrop-filter backdrop-blur bg-opacity-30 rounded-b-md">
-                <div class="hidden md:flex justify-between mb-1">
-                    <ul class="flex flex-wrap gap-x-1 text-sm text-blue-700 font-medium">
-                        @foreach (explode(',', $latestPost->tags) as $tag)
-                            <li>#{{ $tag }}</li>
-                        @endforeach
-                    </ul>
-                    <a href="{{ route('landingPage', ['category' => $latestPost->category_id]) }}"
-                        class="text-yellow-300 drop-shadow text-sm font-medium">{{ $latestPost->category->name }}</a>
+
+                <a href="{{ route('show-blog', $latestPost) }}">
+                    <img class="rounded-md shadow-md" src="{{ asset('storage/' . $latestPost->featured_image) }}"
+                        alt="">
+                </a>
+
+                <div
+                    class="absolute bottom-0 left-0 right-0 pt-0.5 px-2 pb-2 bg-white bg-clip-padding backdrop-filter backdrop-blur bg-opacity-30 rounded-b-md">
+                    <div class="hidden md:flex justify-between mb-1">
+                        <ul class="flex flex-wrap gap-x-1 text-sm text-blue-700 font-medium">
+                            @foreach (explode(',', $latestPost->tags) as $tag)
+                                <li>#{{ $tag }}</li>
+                            @endforeach
+                        </ul>
+                        <a href="{{ route('byCategory', $latestPost->category) }}"
+                            class="text-yellow-300 drop-shadow text-sm font-medium">{{ $latestPost->category->name }}</a>
+                    </div>
+                    <a href="{{ route('show-blog', $latestPost) }}"
+                        class="text-xl text-white drop-shadow leading-5 line-clamp-2 md:line-clamp-none">{{ $latestPost->title }}</a>
                 </div>
-                <a href="{{ route('show-blog', $latestPost->slug) }}"
-                    class="text-xl text-white drop-shadow leading-5 line-clamp-2 md:line-clamp-none">{{ $latestPost->title }}</a>
-            </div>
+
+            @endif
         </div>
 
     @endif
